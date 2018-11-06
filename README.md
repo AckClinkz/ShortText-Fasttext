@@ -1,6 +1,6 @@
 # ShortText-Fasttext
 
-ShortText classification is a intractability problem in Machine Learning. Based on Facebook's Fasttext, this project optimizes its performance in ShortText and introduce a mechanism named category dropout. This mechanism works very well in Weibo's ads classification. Details about category dropout can read [https://blog.csdn.net/AckClinkz/article/details/81907903](https://blog.csdn.net/AckClinkz/article/details/81907903)。
+ShortText classification is an intractability problem in Machine Learning. Based on Facebook's Fasttext, this project optimizes its performance in ShortText and introduces a mechanism named category dropout. This mechanism works very well in Weibo's ads classification. Details about category dropout can read [https://blog.csdn.net/AckClinkz/article/details/81907903](https://blog.csdn.net/AckClinkz/article/details/81907903)。
 
 # Building
 
