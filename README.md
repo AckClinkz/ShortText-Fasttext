@@ -42,7 +42,6 @@ According to [《Item2Vec: Neural Item Embedding for Collaborative Filtering 》
 fasttext skipgram_item2vec \
   -input ./your_input.txt \
   -output "./your_model" \
-  -ws 5 \
   -dim 120 \
   -lr 0.01 \
   -wordNgrams 1 \
