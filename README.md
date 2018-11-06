@@ -2,14 +2,14 @@
 
 ShortText classification is an intractability problem in Machine Learning. Based on Facebook's Fasttext, this project optimizes its performance in ShortText and introduces a mechanism named category dropout. This mechanism works very well in Weibo's ads classification. Details about category dropout can read [Blog](https://blog.csdn.net/AckClinkz/article/details/81907903)。
 
-# Building
+## Building
 
 ```shell
 git clone https://github.com/AckClinkz/ShortText-Fasttext
 cd ShortText-Fasttext
 make
 ```
-# Use
+## Use
 
 This section assumes that you are somewhat familiar with Fasttext. You can try to learn the basics of Fasttext from [officical website](https://github.com/facebookresearch/fastText).
 
@@ -34,7 +34,7 @@ fasttext supervised \
   -vocab ./your_vocabulary.txt
 ```
 
-# Update 2018.11.6
+## Update 2018.11.6
 
 According to [《Item2Vec: Neural Item Embedding for Collaborative Filtering 》](https://arxiv.org/vc/arxiv/papers/1603/1603.04259v2.pdf), realize `item2vec`, usage as follow:
 
