@@ -34,7 +34,7 @@ fasttext supervised \
   -vocab ./your_vocabulary.txt
 ```
 
-## Update 2018.11.6
+## Updated 2018.11.6
 
 According to [《Item2Vec: Neural Item Embedding for Collaborative Filtering 》](https://arxiv.org/vc/arxiv/papers/1603/1603.04259v2.pdf), realize `item2vec`, usage as follow:
 
