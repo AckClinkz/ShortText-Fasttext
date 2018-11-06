@@ -39,7 +39,15 @@ fasttext supervised \
 According to [《Item2Vec: Neural Item Embedding for Collaborative Filtering 》](https://arxiv.org/vc/arxiv/papers/1603/1603.04259v2.pdf), realize `item2vec`, usage as follow:
 
 ```
-
-
-
+fasttext skipgram_item2vec \
+  -input ./your_input.txt \
+  -output "./your_model" \
+  -ws 5 \
+  -dim 120 \
+  -lr 0.01 \
+  -wordNgrams 1 \
+  -minCount 2 \
+  -bucket 1000000 \
+  -epoch 5 \
+  -thread 8
 ```
