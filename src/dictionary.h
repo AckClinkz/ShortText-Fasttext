@@ -26,7 +26,9 @@
 
 namespace fasttext {
 
+// {cate1: {word1: tf, word2:tf,....}, .....}
 typedef std::unordered_map<std::string, std::unordered_map<std::string, int>> dropout_inter_type;
+
 typedef std::unordered_map<int32_t, std::unordered_map<int32_t, real>> dropout_type;
 
 typedef int32_t id_type;
@@ -119,6 +121,7 @@ class Dictionary {
     // clinkz
     void initWordCategory(std::string&, std::vector<std::string>&,
                           dropout_inter_type&);
+
     void updateWordCategory(dropout_inter_type&);
     void probProportion(std::unordered_map<int32_t, real>&);
     void probLog();

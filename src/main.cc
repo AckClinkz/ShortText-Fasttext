@@ -271,6 +271,17 @@ void nn(const std::vector<std::string> args) {
   exit(0);
 }
 
+/*
+
+  Params
+  -------------------
+    args[0]
+    args[1] -> nn_from_file
+    args[2] -> model.bin
+    args[3] -> k
+    args[4] -> word_file
+
+*/
 void nn_from_file(const std::vector<std::string> args) {
   int32_t k;
   if(args.size() == 5){
@@ -377,7 +388,7 @@ int main(int argc, char** argv) {
     exit(EXIT_FAILURE);
   }
   std::string command(args[1]);
-  if (command == "skipgram" || command == "cbow" || command == "supervised") {
+  if (command == "skipgram" || command == "cbow" || command == "supervised" || command == "skipgram_item2vec") {
     train(args);
   } else if (command == "test") {
     test(args);

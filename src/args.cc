@@ -90,6 +90,8 @@ void Args::parseArgs(const std::vector<std::string>& args) {
     lr = 0.1;
   } else if (command == "cbow") {
     model = model_name::cbow;
+  } else if (command == "skipgram_item2vec"){
+    model = model_name::sg_item2vec;
   }
   for (int ai = 2; ai < args.size(); ai += 2) {
     if (args[ai][0] != '-') {
@@ -236,7 +238,9 @@ void Args::printTrainingHelp() {
     << "  -loss               loss function {ns, hs, softmax} [" << lossToString(loss) << "]\n"
     << "  -thread             number of threads [" << thread << "]\n"
     << "  -pretrainedVectors  pretrained word vectors for supervised learning ["<< pretrainedVectors <<"]\n"
-    << "  -saveOutput         whether output params should be saved [" << boolToString(saveOutput) << "]\n";
+    << "  -saveOutput         whether output params should be saved [" << boolToString(saveOutput) << "]\n"
+    << "  -cate_dropout       whether use category dropout during training [" << boolToString(cate_dropout) << "]\n"
+    << "  -vocab              infrequent but important words save in this file [" << path_vocabulary << "]\n";
 }
 
 void Args::printQuantizationHelp() {

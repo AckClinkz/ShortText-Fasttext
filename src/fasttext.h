@@ -90,6 +90,8 @@ class FastText {
       const std::vector<int32_t>&);
   void cbow(Model&, real, const std::vector<int32_t>&);
   void skipgram(Model&, real, const std::vector<int32_t>&);
+  // 变长skipgram
+  void skipgram_item2vec(Model&, real, const std::vector<int32_t>&);
   std::vector<int32_t> selectEmbeddings(int32_t) const;
   void getSentenceVector(std::istream&, Vector&);
   void quantize(const Args);

@@ -283,8 +283,8 @@ bool Dictionary::readWord(std::istream& in, std::string& word) const
 
 */
 
-void Dictionary::initWordCategory(
-    std::string& word, std::vector<std::string>& terms, dropout_inter_type& buff){
+void Dictionary::initWordCategory(std::string& word,
+    std::vector<std::string>& terms, dropout_inter_type& buff){
   if (word.compare(EOS) != 0){
     terms.push_back(word);
     return;
@@ -382,19 +382,22 @@ void Dictionary::loadVocab(std::set<std::string>& vocab){
 void Dictionary::readFromFile(std::istream& in) {
   std::string word;
   int64_t minThreshold = 1;
+
   std::vector<std::string> terms;
   dropout_inter_type buff;
+  // load keys' vocabulary
   std::set<std::string> vocab;
-  if (args_->cate_dropout == true){
+  if (args_->path_vocabulary != "")
     loadVocab(vocab);
-  }  
+
   while (readWord(in, word)) {
     add(word);
 
     /*
-      Modify by clinkz
+      统计cate->{word -> count}, Modify by clinkz
     */
-    initWordCategory(word, terms, buff);
+    if(args_->cate_dropout)
+      initWordCategory(word, terms, buff);
 
     if (ntokens_ % 1000000 == 0 && args_->verbose > 1) {
       std::cerr << "\rRead " << ntokens_  / 1000000 << "M words" << std::flush;
@@ -416,7 +419,7 @@ void Dictionary::readFromFile(std::istream& in) {
     throw std::invalid_argument(
         "Empty vocabulary. Try a smaller -minCount value.");
   }
-  if(args_->cate_dropout == true){
+  if(args_->cate_dropout){
     updateWordCategory(buff);
   }  
   buff.clear();
@@ -466,7 +469,10 @@ void Dictionary::threshold(int64_t t, int64_t tl) {
 
 /*
 
-  Modify by clinkz
+  During training, there are infrequent but important words, such as
+  婚照、痘痘... These words will be discarded by traditional minCount
+  strategy. In order to avoid this situation, it is necessary to
+  introduce a vocabulary.
 
 */
 void Dictionary::threshold(int64_t t, int64_t tl, 

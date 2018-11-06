@@ -365,6 +365,25 @@ void FastText::skipgram(Model& model, real lr,
   }
 }
 
+/*
+
+  item2vec skipgram
+
+*/
+
+void FastText::skipgram_item2vec(Model& model, real lr,
+                        const std::vector<int32_t>& line) {
+  for (int32_t w = 0; w < line.size(); w++) {
+    int32_t boundary = line.size() - 1;
+    const std::vector<int32_t>& ngrams = dict_->getSubwords(line[w]);
+    for (int32_t c = -boundary; c <= boundary; c++) {
+      if (c != 0 && w + c >= 0 && w + c < line.size()) {
+        model.update(ngrams, line[w + c], lr);
+      }
+    }
+  }
+}
+
 std::tuple<int64_t, double, double> FastText::test(
     std::istream& in,
     int32_t k) {
@@ -591,6 +610,9 @@ void FastText::trainThread(int32_t threadId) {
     } else if (args_->model == model_name::sg) {
       localTokenCount += dict_->getLine(ifs, line, model.rng);
       skipgram(model, lr, line);
+    } else if (args_->model == model_name::sg_item2vec) {
+      localTokenCount += dict_->getLine(ifs, line, model.rng);
+      skipgram_item2vec(model, lr, line);
     }
     if (localTokenCount > args_->lrUpdateRate) {
       tokenCount_ += localTokenCount;
