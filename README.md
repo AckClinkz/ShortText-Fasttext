@@ -9,7 +9,7 @@ git clone https://github.com/AckClinkz/ShortText-Fasttext
 cd ShortText-Fasttext
 make
 ```
-## Use
+## Usage
 
 This section assumes that you are somewhat familiar with Fasttext. You can try to learn the basics of Fasttext from [officical website](https://github.com/facebookresearch/fastText).
 
